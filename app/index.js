@@ -3,7 +3,7 @@ const app = express();
 
 // Middlewares //
 app.use(express.json()); // Permit JSON Objects 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false })); // Exclude images from requests
 
 // Routing //
 app.use(require('../routes/routes'));
