@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 // Middlewares //
-app.use(express.json());
+app.use(express.json()); // Permit JSON Objects 
 app.use(express.urlencoded({ extended: false }));
 
 // Routing //
