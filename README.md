@@ -1,11 +1,10 @@
 # daily-backend
 
-A nice project with a nice description
-
+![image](https://user-images.githubusercontent.com/55299906/78704220-20158280-78d1-11ea-87e6-335634f7fbcb.png)
 ---
 ## Requirements
 
-For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
+For development, you will only need Node.js and a node global package, Yarn or npm, installed in your environement.
 
 ### Node
 - #### Node installation on Windows
@@ -47,12 +46,8 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
     $ https://github.com/RevealIT-Daily/daily-backend.git
     $ cd daily-backend
-    $ yarn install
+    $ yarn/npm install
 
 ## Running the project
 
-    $ yarn start
-
-## Simple build for production
-
-    $ yarn build
+    $ yarn/npm run dev
