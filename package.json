@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/RevealIT-Daily/daily-backend/issues"
   },
-  "homepage": "https://github.com/RevealIT-Daily/daily-backend#readme"
+  "homepage": "https://github.com/RevealIT-Daily/daily-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
