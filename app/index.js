@@ -8,5 +8,5 @@ app.use(express.urlencoded({ extended: false })); // Exclude images from request
 // Routing //
 app.use(require('../routes/routes'));
 
-app.listen(4000);
-console.log("Server on port 4000");
+app.set('port', process.env.PORT || 4000);
+console.log("Server on port "+app.get('port'));
