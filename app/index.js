@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
 
-// PRUEBA //
-
 // Middlewares //
 app.use(express.json()); // Permit JSON Objects 
 app.use(express.urlencoded({ extended: false })); // Exclude images from requests
