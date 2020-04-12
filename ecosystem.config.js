@@ -1,13 +1,13 @@
 module.exports = {
   apps : [{
-    name: 'API',
-    script: 'app.js',
+    name: 'index',
+    script: 'app/index.js',
 
     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
     args: 'one two',
     instances: 1,
     autorestart: true,
-    watch: false,
+    watch: true,
     max_memory_restart: '1G',
     env: {
       NODE_ENV: 'development'
@@ -19,11 +19,11 @@ module.exports = {
 
   deploy : {
     production : {
-      user : 'node',
-      host : '212.83.163.1',
+      user : 'root',
+      host : '74.208.169.91',
       ref  : 'origin/master',
-      repo : 'git@github.com:repo.git',
-      path : '/var/www/production',
+      repo : 'git@github.com:PedroDBahena/daily-backend.git',
+      path : '/var/www/daily-backend/',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
