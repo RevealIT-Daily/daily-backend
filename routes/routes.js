@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 router.get('/', function(req, res){
-    res.send('Worksssss')
+    res.send('Working autodeploy')
 });
 
 module.exports = router;
