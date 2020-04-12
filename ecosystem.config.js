@@ -23,7 +23,7 @@ module.exports = {
       host : '74.208.169.91',
       ref  : 'origin/develop',
       repo : 'git@github.com:PedroDBahena/daily-backend.git',
-      path : '/var/www/',
+      path : '/var/www/daily-backend/',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
