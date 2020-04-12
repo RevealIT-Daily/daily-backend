@@ -20,7 +20,7 @@ module.exports = {
   deploy : {
     production : {
       user : 'root',
-      host : '74.208.169.91:90',
+      host : '74.208.169.91',
       ref  : 'origin/develop',
       repo : 'git@github.com:https://github.com/RevealIT-Daily/daily-backend.git',
       path : '/var/www/html/daily-backend/',
