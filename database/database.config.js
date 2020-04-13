@@ -1,5 +1,5 @@
 module.exports = {
-    HOST: "74.208.169.91",
+    HOST: "127.0.0.1",
     USER: "postgres",
     PASSWORD: "root123",
     DB: "daily-dev",
