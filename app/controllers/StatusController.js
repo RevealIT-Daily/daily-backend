@@ -41,7 +41,7 @@ exports.findAll = async (req, res) => {
 
     await STATUS.findAll()
         .then(data => {
-            res.status(200).send(data);
+            res.status(201).send(data);
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Something wrong from get satus by description"
