@@ -1,29 +1,16 @@
-const databaseConfig = require("../../database/database.config");
 
-const Sequelize = require("sequelize");
-
-const sequelize = new Sequelize(databaseConfig.DB, databaseConfig.USER, databaseConfig.PASSWORD, {
-    host: databaseConfig.HOST,
-    dialect: databaseConfig.dialect,
-
-    pool: {
-        max: databaseConfig.pool.max,
-        min: databaseConfig.pool.min,
-        acquire: databaseConfig.pool.acquire,
-        idle: databaseConfig.pool.idle
-    }
-});
+const dbConnection = require('../../database/database.connection');
 
 const db = {};
 
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
+db.Sequelize = dbConnection.Sequelize;
+db.sequelize = dbConnection.sequelize;
 
 //db.sequelize.sync();
 
-const STATUS = db.status = require("../models/Status")(sequelize, Sequelize);
+const STATUS =  require("../models/Status")(dbConnection.sequelize, dbConnection.Sequelize);
 
-const OP = db.Sequelize.Op;
+//const OP = db.Sequelize.Op;
 
 exports.create = async (req, res) => {
 
