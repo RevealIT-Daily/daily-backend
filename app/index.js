@@ -17,8 +17,6 @@ app.use(cors());
 // PATH //
 app.use(express.static(path.join(__dirname, '../public')));
 
-
-
 // Extended https://swagger.io/speficiation/#infoObject
 const swaggerOptions = {
     swaggerDefinition: {
