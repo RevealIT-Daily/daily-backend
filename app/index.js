@@ -1,4 +1,5 @@
 const express = require('express');
+var bodyParser = require("body-parser");
 var cors = require('cors');
 const app = express();
 const path = require('path');
@@ -6,10 +7,9 @@ const path = require('path');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
-
 // Middlewares //
-app.use(express.json()); // Permit JSON Objects 
-app.use(express.urlencoded({ extended: false })); // Exclude images from requests
+app.use(bodyParser.json()); // Permit JSON Objects     
+app.use(bodyParser.urlencoded({ extended: false })); // Exclude images from requests
 
 // CORS //
 app.use(cors());

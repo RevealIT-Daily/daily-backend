@@ -1,4 +1,8 @@
 const { Router } = require('express');
+const passport = require('passport');
+
+// PASSPORT //
+//app.use(passport.initialize());
 const router = Router();
 
 router.get('/', function (req, res) {
@@ -100,5 +104,9 @@ router.put('/api/status', status.update);
  *  THIS METHOD IS ONLY USED BY BACKEND DEVELOPERS 
  */
 router.delete('/api/dev/status/:id', status.delete);
+
+router.post('/login', passport.authenticate('local'), (req, res) => {
+    
+});
 
 module.exports = router;
