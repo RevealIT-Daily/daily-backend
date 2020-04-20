@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
 
     await STATUS.create(status)
         .then(data => {
-            res.send(data);
+            res.status(201).send({ "message": "Satus created!", "data": data });
         })
         .catch(err => {
             res.status(400).send({
@@ -53,7 +53,7 @@ exports.findById = async (req, res) => {
         res.status(200).send({ "data": data });
     }).catch(err => {
         res.status(400).send({
-            message: err.message || "Something wrong from get satus by get all status"
+            message: err.message || "Something wrong from get satus by get status find by primary key"
         });
     });
 }
@@ -69,7 +69,7 @@ exports.update = async (req, res) => {
         description: req.body.description
     }
 
-    STATUS.update(status, { where: { id: statusId } }).then(data => {
+    await STATUS.update(status, { where: { id: statusId } }).then(data => {
         res.status(200).send({ "message": "Status description updated" });
     });
 }
