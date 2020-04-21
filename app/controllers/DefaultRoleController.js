@@ -9,8 +9,6 @@ db.sequelize = dbConnection.sequelize;
 const DEFAULTROLE = require('../models/DefaultRole')(dbConnection.sequelize, dbConnection.Sequelize);
 const STATUS = require('../models/Status')(dbConnection.sequelize, dbConnection.Sequelize);
 
-STATUS.belongsTo(DEFAULTROLE);
-
 exports.create = async (req, res) => {
 
     if (!req.body.description || !req.body.status_id) {
@@ -26,7 +24,7 @@ exports.create = async (req, res) => {
 
     await DEFAULTROLE.create(defaultRole)
         .then(data => {
-            res.status(201).send({ "message": "default role created!", "data": data });
+            res.status(201).send({ message: "default role created!", data: data });
         })
         .catch(err => {
             res.status(400).send({
@@ -38,7 +36,7 @@ exports.create = async (req, res) => {
 exports.findAll = async (req, res) => {
     await DEFAULTROLE.findAll()
         .then(data => {
-            res.status(200).send({ "data": data });
+            res.status(200).send({ data: data });
         })
         .catch(err => {
             res.status(400).send({
@@ -53,10 +51,11 @@ exports.findById = async (req, res) => {
 
     await DEFAULTROLE.findByPk(req.params.id)
         .then(data => {
+            if (!data) return res.status(404).send({ message: 'Default role not found!' });
             res.status(200).send({ data: data });
         }).catch(err => {
             res.status(400).send({
-                message: err.message || "Something wrong from get default role by primary key"
+                message: err.message || "Something wrong from get default role by id"
             });
         });
 }
@@ -67,17 +66,19 @@ exports.update = async (req, res) => {
     const newDescription = req.body.description;
     const newStatusId = req.body.status_id;
 
-    if (!roleId) res.status(400).send({ message: 'id can not be null' });
-
     //if (!req.body.description) res.send(400).send({ message: 'description can not be null' });
 
     const defaultRole = {
         description: newDescription,
         status_id: newStatusId
     }
-    await DEFAULTROLE.update(defaultRole, { where: { id: roleId } })
+
+    await DEFAULTROLE.findByPk(roleId)
         .then(data => {
-            res.status(200).send({ message: "Default role updated!" });
+            if (!data) return res.status(404).send({ message: 'Default role not found!' });
+
+            if (DEFAULTROLE.update(defaultRole, { where: { id: roleId } }))
+                res.status(200).send({ message: "Default role updated!" });
         }).catch(err => {
             res.status(400).send({
                 message: err.message || "Something wrong from update default role"
