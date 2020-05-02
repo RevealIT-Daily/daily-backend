@@ -1,5 +1,4 @@
 const DefaultRole = require('../models/DefaultRole');
-'use strict';
 module.exports = (sequelize, Sequelize) => {
     var status = sequelize.define("status", {
         id: {
