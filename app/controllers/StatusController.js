@@ -26,11 +26,11 @@ exports.create = async (req, res) => {
 
     await STATUS.create(status)
         .then(data => {
-            res.status(201).send({ "message": "Satus created!", "data": data });
+            res.status(201).send({ "message": "Status created!", "data": data });
         })
         .catch(err => {
             res.status(400).send({
-                message: err.message || "Something wrong from create satus"
+                message: err.message || "Something wrong from create status"
             });
         })
 }

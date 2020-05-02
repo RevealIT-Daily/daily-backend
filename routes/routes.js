@@ -8,6 +8,8 @@ const router = Router();
 const status = require('../app/controllers/StatusController');
 const defaultrole = require('../app/controllers/DefaultRoleController');
 const AccountTypeController = require('../app/controllers/AccountType.controller');
+const ProjectTask = require('../app/controllers/ProjectTask.Controller');
+const Project = require('../app/controllers/Project.Controller');
 
 /***
  * @swagger
@@ -298,6 +300,17 @@ router.get('/api/accountType/:id', AccountTypeController.findById);
  *              description: Returns the message 'Account type updated!'
  */
 router.put('/api/accountType/', AccountTypeController.update);
+
+
+router.post('/api/projectTask', ProjectTask.create);
+
+router.get('/api/projectTask', ProjectTask.findAll);
+
+
+router.post('/api/project', Project.create);
+
+router.get('/api/project',Project.findAll)
+
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
 
