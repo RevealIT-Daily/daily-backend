@@ -587,7 +587,7 @@ router.get('/api/user/:id',User.findById);
  * /api/user:
  *  put:
  *     tags:
- *          - User
+ *          - Userrrr
  *     description: Update user object by id
  *     produces:
  *          - application/json
