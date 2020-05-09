@@ -17,7 +17,7 @@ const User = require('../app/controllers/UserController');
  * /api/status:
  *  post:
  *     tags:
- *          - Statusss
+ *          - Status
  *     description: Create new status
  *     produces:
  *          - application/json
