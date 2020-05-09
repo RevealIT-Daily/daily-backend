@@ -405,10 +405,6 @@ router.get('/api/projectTask/:id',ProjectTask.findById);
  */
 router.put('/api/projectTask',ProjectTask.update);
 
-
-
-
-
 /***
  * @swagger
  * /api/project:
@@ -450,7 +446,7 @@ router.post('/api/project', Project.create);
  * /api/project:
  *  get:
  *      tags:
- *          -Project
+ *          - Project
  *      description: User to get all projects
  *      responses:
  *          '200':
@@ -555,7 +551,7 @@ router.post('/api/user',User.create);
  * /api/user:
  *  get:
  *      tags:
- *          -User
+ *          - User
  *      description: User to get all users
  *      responses:
  *          '200':
