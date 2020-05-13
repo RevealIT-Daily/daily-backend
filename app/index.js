@@ -37,7 +37,7 @@ app.use('/api/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 // Routing //
-app.use(require('./routes/routes'));
+app.use(require('../routes/routes'));
 
 
 // set port, listen for requests
