@@ -94,13 +94,20 @@ exports.update = async (req, res) => {
         });
 }
 
-// exports.getTasksByProject = async (req,res) => {
-//     if (!req.params.id_project) return res.status(400).send({ message: "Project Id can not be null" });
+exports.getTasksByProject = async (req,res) => {
+    if (!req.params.idProject) return res.status(400).send({ message: "Project Id can not be null" });
 
-//     await Project.findAndCountAll({
-//         where:{
-
-//         }
-//     })
-// }
+    await PROJECTASK.findAll({
+        where:{
+            projects_id:req.params.idProject
+        }
+    }).then(data => {
+        if(!data) return res.status(400).send({message : 'project task not found!'})
+        res.status(200).send({data: data})
+    }).catch(err =>{
+        res.status(400).send({
+            message: err.message || "Something Wrong from update project task"
+        })
+    })
+}
 

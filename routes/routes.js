@@ -408,6 +408,29 @@ router.get('/api/projectTask/:id',ProjectTask.findById);
  */
 router.put('/api/projectTask',ProjectTask.update);
 
+
+/***
+ * @swagger
+ * /api/projectTaskByProject/{idProject}:
+ *  get:
+ *     tags:
+ *          - Project task
+ *     description: Get project task by id Project
+ *     produces:
+ *          - application/json
+ *     parameters:
+ *          - name: idProject
+ *            description: Foreign Key
+ *            in: path
+ *     responses:   
+ *          '200':
+ *              description: Returns project task object
+ */
+router.get('/api/projectTaskByProject/:idProject',ProjectTask.getTasksByProject)
+
+
+/// PROJECT ///
+
 /***
  * @swagger
  * /api/project:
@@ -509,6 +532,8 @@ router.get('/api/project/:id',Project.findById)
  *              description: Returns the message 'Project  updated!'
  */
 router.put('/api/project', Project.update);
+
+// user //
 
 /***
  * @swagger
