@@ -29,7 +29,7 @@ const swaggerOptions = {
             servers: ["http://74.208.169.91:90"]
         }
     },
-    apis: ['../routes/*.js']
+    apis: ['./routes/routes.js']
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
