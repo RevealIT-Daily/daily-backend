@@ -111,7 +111,7 @@ router.delete('/api/dev/status/:id', status.delete);
 
 /***
  * @swagger
- * /api/defaultRoless:
+ * /api/defaultRole:
  *  post:
  *     tags:
  *          - Default role
@@ -241,7 +241,7 @@ router.post('/api/accountType', AccountTypeController.create);
  * /api/accountType:
  *  get:
  *     tags:
- *          - Account typesss
+ *          - Account type
  *     description: Use to get all account types
  *     responses:
  *          '200':
