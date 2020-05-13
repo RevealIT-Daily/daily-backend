@@ -23,7 +23,7 @@ module.exports = {
       host : '74.208.169.91',
       ref  : 'origin/develop',
       repo : 'https://github.com/RevealIT-Daily/daily-backend.git',
-      path : '/var/www/daily-backend/',
+      path : '/var/www/html/daily-backend/',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
