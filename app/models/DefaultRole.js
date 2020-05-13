@@ -12,20 +12,12 @@ module.exports = (sequelize, Sequelize) => {
         },
         status_id: {
             type: Sequelize.BIGINT,
-            references: {
-                model: Status,
-                key: 'id'
-            },
         }
     }, {
         freezeTable: true,
         timestamps: false,
-        tableName: 'default_roles'
     });
-
-    default_roles.associate = function (models) {
-        models.default_roles.hasOne(models.status, { foreignKey: 'status_id' });
-    }
+        tableName: 'default_roles'
 
     return default_roles;
 }

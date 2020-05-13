@@ -1,11 +1,9 @@
 const dbConnection = require('../../database/database.connection');
 
-const db = {};
 
-db.Sequelize = db.Sequelize;
-db.sequelize = db.sequelize;
-
-const PROJECTASK = require('../models/ProjectTasks')(dbConnection.sequelize, dbConnection.Sequelize);
+const PROJECT = dbConnection.Project;
+const PROJECTASK = dbConnection.ProjectTasks;
+const STATUS = dbConnection.Status;
 
 exports.create = async (req, res) => {
     const name = req.body.name;
@@ -37,7 +35,14 @@ exports.create = async (req, res) => {
 }
 
 exports.findAll = async (req, res) => {
-    await PROJECTASK.findAll()
+    await PROJECTASK.findAll({
+        include:[{
+            model:PROJECT
+        },{
+            model: STATUS
+        }
+        ]
+    })
         .then(data => {
             res.status(200).send({ data: data });
         })
@@ -52,7 +57,14 @@ exports.findById = async (req, res) => {
 
     if (!req.params.id) return res.status(400).send({ message: "Id can not be null" });
 
-    await PROJECTASK.findByPk(req.params.id)
+    await PROJECTASK.findByPk(req.params.id,{
+        include:[{
+            model:PROJECT
+        },{
+            model: STATUS
+        }
+        ]
+    })
         .then(data => {
             if (!data) return res.status(404).send({ message: 'Project task not found!' });
             res.status(200).send({ data: data });
@@ -98,6 +110,12 @@ exports.getTasksByProject = async (req,res) => {
     if (!req.params.idProject) return res.status(400).send({ message: "Project Id can not be null" });
 
     await PROJECTASK.findAll({
+        include:[{
+            model:PROJECT
+        },{
+            model: STATUS
+        }
+        ],
         where:{
             projects_id:req.params.idProject
         }

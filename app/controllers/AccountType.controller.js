@@ -1,11 +1,8 @@
 const dbConnection = require('../../database/database.connection');
 
-const db = {};
 
-db.Sequelize = db.Sequelize;
-db.sequelize = db.sequelize;
-
-const ACCOUNTYPE = require('../models/AccountType')(dbConnection.sequelize, dbConnection.Sequelize);
+const ACCOUNTYPE = dbConnection.AccountType;
+const STATUS = dbConnection.Status;
 
 exports.create = async (req, res) => {
     const name = req.body.name;
@@ -32,7 +29,13 @@ exports.create = async (req, res) => {
 }
 
 exports.findAll = async (req, res) => {
-    await ACCOUNTYPE.findAll()
+    await ACCOUNTYPE.findAll(
+        {
+            include:[
+                {model:STATUS}
+            ]
+        }
+    )
         .then(data => {
             res.status(200).send({ data: data });
         })
@@ -44,7 +47,9 @@ exports.findAll = async (req, res) => {
 }
 
 exports.findById = async (req, res) => {
-    await ACCOUNTYPE.findByPk(req.params.id)
+    await ACCOUNTYPE.findByPk(req.params.id,
+        {include:[{model:STATUS}]}
+        )
         .then(data => {
             if (!data) return res.status(404).send({ message: 'Account type not found!' });
             res.status(200).send({ data: data });

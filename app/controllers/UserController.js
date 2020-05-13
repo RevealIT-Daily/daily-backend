@@ -1,11 +1,10 @@
 const dbConnection = require('../../database/database.connection');
 
-const db = {};
 
-db.Sequelize = db.Sequelize;
-db.sequelize = db.sequelize;
-
-const USER = require('../models/User')(dbConnection.sequelize, dbConnection.Sequelize);
+const USER = dbConnection.User;
+const ACCOUNTYPE = dbConnection.AccountType;
+const DEFAULTROLE = dbConnection.DefaultRole
+const STATUS = dbConnection.Status;
 
 exports.create = async (req, res) => {
     const email = req.body.email;
@@ -38,7 +37,17 @@ exports.create = async (req, res) => {
 }
 
 exports.findAll = async (req, res) => {
-    await USER.findAll()
+    await USER.findAll({
+        include:[
+            {
+                model:ACCOUNTYPE
+            },{
+                model:DEFAULTROLE
+            },{
+                model:STATUS
+            }
+        ]
+    })
         .then(data => {
             res.status(200).send({ data: data });
         })

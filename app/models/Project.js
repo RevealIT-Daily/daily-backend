@@ -1,8 +1,10 @@
 const Status = require('./Status')
+const Project_tasks = require('./ProjectTasks');
 
 module.exports = (sequelize,Sequelize)=>{
     var projects = sequelize.define('projects',{
         id:{
+            allowNull:false,
             primaryKey: true,
             autoIncrement: true,
             type: Sequelize.BIGINT
@@ -19,11 +21,7 @@ module.exports = (sequelize,Sequelize)=>{
             allowNull: false
         },
         status_id: {
-            type: Sequelize.BIGINT,
-            references: {
-                model: Status,
-                key: 'id'
-            },
+            type: Sequelize.BIGINT
         }
 
     },
@@ -33,9 +31,7 @@ module.exports = (sequelize,Sequelize)=>{
         tableName: 'projects'
     });
 
-    projects.associate = function (models) {
-        models.projects.hasOne(models.status, { foreignKey: 'status_id' });
-    }
+
 
     return projects;
 }

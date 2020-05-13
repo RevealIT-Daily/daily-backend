@@ -1,13 +1,9 @@
 
 const dbConnection = require('../../database/database.connection');
 
-const db = {};
 
-db.Sequelize = dbConnection.Sequelize;
-db.sequelize = dbConnection.sequelize;
-
-const DEFAULTROLE = require('../models/DefaultRole')(dbConnection.sequelize, dbConnection.Sequelize);
-const STATUS = require('../models/Status')(dbConnection.sequelize, dbConnection.Sequelize);
+const DEFAULTROLE = dbConnection.DefaultRole;
+const STATUS = dbConnection.Status;
 
 exports.create = async (req, res) => {
 
@@ -34,7 +30,11 @@ exports.create = async (req, res) => {
 }
 
 exports.findAll = async (req, res) => {
-    await DEFAULTROLE.findAll()
+    await DEFAULTROLE.findAll({
+        include:[
+            {model:STATUS}
+        ]
+    })
         .then(data => {
             res.status(200).send({ data: data });
         })
@@ -49,7 +49,9 @@ exports.findById = async (req, res) => {
 
     if (!req.params.id) return res.status(400).send({ message: "Id can not be null" });
 
-    await DEFAULTROLE.findByPk(req.params.id)
+    await DEFAULTROLE.findByPk(req.params.id,{
+        include:[{model:STATUS}]
+    })
         .then(data => {
             if (!data) return res.status(404).send({ message: 'Default role not found!' });
             res.status(200).send({ data: data });

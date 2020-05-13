@@ -1,14 +1,9 @@
 
 const dbConnection = require('../../database/database.connection');
 
-const db = {};
 
-db.Sequelize = dbConnection.Sequelize;
-db.sequelize = dbConnection.sequelize;
 
-//db.sequelize.sync();
-
-const STATUS = require("../models/Status")(dbConnection.sequelize, dbConnection.Sequelize);
+const STATUS = dbConnection.Status;
 
 //const OP = db.Sequelize.Op;
 

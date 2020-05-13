@@ -30,10 +30,6 @@ module.exports = (sequelize, Sequelize)=>{
         },
         projects_id:{
             type: Sequelize.BIGINT,
-            references:{
-                model:Project,
-                key:'id'
-            }
         },
         status_id:{
             type: Sequelize.BIGINT,
@@ -57,12 +53,7 @@ module.exports = (sequelize, Sequelize)=>{
         tableName: 'project_tasks'
     });
 
-    project_tasks.associate = function (models) {
-        models.project_tasks.hasOne(models.projects_id, { foreignKey: 'projects_id' });
-        models.project_tasks.hasOne(models.Status, { foreignKey: 'status_id' });
-        models.project_tasks.hasOne(models.phases_id, { foreignKey: 'phases_id'});
-        models.project_tasks.hasOne(models.user_assigned, { foreignKey: 'user_assigned'});
-    }
+    
 
     return project_tasks;
     

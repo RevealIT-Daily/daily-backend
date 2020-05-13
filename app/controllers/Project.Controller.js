@@ -1,12 +1,9 @@
 
 const dbConnection = require('../../database/database.connection');
 
-const db = {};
 
-db.Sequelize = dbConnection.Sequelize;
-db.sequelize = dbConnection.sequelize;
-
-const PROJECT = require('../models/Project')(dbConnection.sequelize, dbConnection.Sequelize);
+const PROJECT = dbConnection.Project;
+const STATUS = dbConnection.Status;
 
 exports.create = async (req, res) => {
     const name = req.body.name;
@@ -36,7 +33,9 @@ exports.create = async (req, res) => {
 }
 
 exports.findAll = async (req,res)=>{
- await PROJECT.findAll()
+ await PROJECT.findAll({
+     include:[{model:STATUS}]
+ })
         .then(data => {
             res.status(200).send({ data: data });
         })
@@ -50,7 +49,9 @@ exports.findById = async (req, res) => {
 
     if (!req.params.id) return res.status(400).send({ message: "Id can not be null" });
 
-    await PROJECT.findByPk(req.params.id)
+    await PROJECT.findByPk(req.params.id,{
+        include:[{model:STATUS}]
+    })
         .then(data => {
             if (!data) return res.status(404).send({ message: 'Project not found!' });
             res.status(200).send({ data: data });

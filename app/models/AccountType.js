@@ -16,10 +16,6 @@ module.exports = (sequelize, Sequelize) => {
         },
         status_id: {
             type: Sequelize.BIGINT,
-            references: {
-                model: Status,
-                key: 'id'
-            }
         }
     }, {
         freezeTableName: true,

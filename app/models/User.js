@@ -29,13 +29,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         account_types:{
             type:Sequelize.BIGINT,
-            model: AccountType,
-            id:'key'
         },
         default_roles:{
             type:Sequelize.BIGINT,
-            model: DefaultRol,
-            id:'key'
         },
         status_id:{
             type:Sequelize.BIGINT,
@@ -47,11 +43,5 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false,
         tableName: 'users'
     });
-
-    USER.associate = function (models){
-        models.USER.hasOne(models.account_types, { foreignKey: 'account_types' });
-        models.USER.hasOne(models.default_roles, { foreignKey: 'default_roles' });
-        models.USER.hasOne(models.status_id, { foreignKey: 'status_id'});
-    }
     return USER;
 };
