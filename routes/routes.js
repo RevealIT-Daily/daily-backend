@@ -241,7 +241,7 @@ router.post('/api/accountType', AccountTypeController.create);
  * /api/accountType:
  *  get:
  *     tags:
- *          - Account type
+ *          - Account typesss
  *     description: Use to get all account types
  *     responses:
  *          '200':
