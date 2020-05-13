@@ -378,7 +378,7 @@ router.get('/api/projectTask/:id',ProjectTask.findById);
  * /api/projectTask:
  *  put:
  *     tags:
- *          - Project task
+ *          - Project tasks
  *     description: Update project task object by id
  *     produces:
  *          - application/json
