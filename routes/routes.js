@@ -111,7 +111,7 @@ router.delete('/api/dev/status/:id', status.delete);
 
 /***
  * @swagger
- * /api/defaultRole:
+ * /api/defaultRoless:
  *  post:
  *     tags:
  *          - Default role
