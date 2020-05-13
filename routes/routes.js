@@ -302,6 +302,9 @@ router.get('/api/accountType/:id', AccountTypeController.findById);
  */
 router.put('/api/accountType/', AccountTypeController.update);
 
+
+ /// PROJECT TASKS ///
+
 /***
  * @swagger
  * /api/projectTask:
@@ -340,7 +343,7 @@ router.post('/api/projectTask', ProjectTask.create);
 
 /***
  * @swagger
- * /api/accountType:
+ * /api/projectTask:
  *  get:
  *     tags:
  *          - Project task
