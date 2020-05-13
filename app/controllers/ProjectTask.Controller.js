@@ -94,3 +94,13 @@ exports.update = async (req, res) => {
         });
 }
 
+// exports.getTasksByProject = async (req,res) => {
+//     if (!req.params.id_project) return res.status(400).send({ message: "Project Id can not be null" });
+
+//     await Project.findAndCountAll({
+//         where:{
+
+//         }
+//     })
+// }
+
