@@ -11,6 +11,8 @@ const AccountTypeController = require('../app/controllers/AccountType.controller
 const ProjectTask = require('../app/controllers/ProjectTask.Controller');
 const Project = require('../app/controllers/Project.Controller');
 const User = require('../app/controllers/UserController');
+const GroupRole = require('../app/controllers/GroupRole..controller');
+const ProjectUser = require('../app/controllers/ProjectUser.controller');
 
 /***
  * @swagger
@@ -639,6 +641,19 @@ router.get('/api/user/:id',User.findById);
  *              description: Returns the message 'User updated!'
  */
 router.put('/api/user',User.update);
+
+router.get('/api/groupRole', GroupRole.findAll);
+
+router.post('/api/groupRole',GroupRole.create);
+router.get('/api/groupRole/:id',GroupRole.findById);
+router.put('/api/groupRole', GroupRole.update);
+
+router.post('/api/projectUser',ProjectUser.create);
+router.get('/api/projectUser',ProjectUser.findAll);
+router.get('/api/projectUser/:id',ProjectUser.findById);
+router.put('/api/projectUser',ProjectUser.update);
+
+
 
 
 router.post('/login', passport.authenticate('local'), (req, res) => {

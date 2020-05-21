@@ -26,6 +26,9 @@ db.Status = require('../app/models/Status')(db.sequelize,db.Sequelize);
 db.User = require('../app/models/User')(db.sequelize,db.Sequelize);
 db.AccountType = require('../app/models/AccountType')(db.sequelize,db.Sequelize);
 db.DefaultRole = require('../app/models/DefaultRole')(db.sequelize,db.Sequelize);
+db.GroupRoles = require('../app/models/GroupRole')(db.sequelize,db.Sequelize);
+db.ProjectUser = require('../app/models/ProjectUsers')(db.sequelize,db.Sequelize);
+
 
 
 //Relations
@@ -37,6 +40,10 @@ db.User.belongsTo(db.DefaultRole, {foreignKey: 'default_roles'});
 db.User.belongsTo(db.Status,{foreignKey: 'status_id'});
 db.DefaultRole.belongsTo(db.Status,{foreignKey:'status_id'});
 db.AccountType.belongsTo(db.Status,{foreignKey:'status_id'});
+db.GroupRoles.belongsTo(db.Status,{foreignKey: 'status_id'});
+db.ProjectUser.belongsTo(db.User,{foreignKey: 'user_id'});
+db.ProjectUser.belongsTo(db.Project,{foreignKey: 'projects_id'});
+db.ProjectUser.belongsTo(db.GroupRoles,{foreignKey: 'group_roles_id'});
 
 
 module.exports = db;

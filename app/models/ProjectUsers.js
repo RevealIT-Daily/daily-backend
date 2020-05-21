@@ -1,35 +1,32 @@
 
 module.exports = (sequelize,Sequelize)=>{
-    var projects = sequelize.define('projects',{
+    var project_users = sequelize.define('project_users',{
         id:{
             allowNull:false,
             primaryKey: true,
             autoIncrement: true,
             type: Sequelize.BIGINT
         },
-        name:{
-            type: Sequelize.STRING,
+        user_id:{
+            type: Sequelize.BIGINT,
             allowNull: false
         },
-        description:{
-            type: Sequelize.STRING
-        },
-        members: {
-            type:Sequelize.STRING,
+        projects_id:{
+            type: Sequelize.BIGINT,
             allowNull: false
         },
-        status_id: {
-            type: Sequelize.BIGINT
+        group_roles_id: {
+            type:Sequelize.BIGINT,
+            allowNull: false
         }
-
     },
     {
         freezeTable: true,
         timestamps: false,
-        tableName: 'projects'
+        tableName: 'project_users'
     });
 
 
 
-    return projects;
+    return project_users;
 }
