@@ -11,6 +11,7 @@ exports.create = async (req, res) => {
     const projectId = req.body.project_id
     const statusId = req.body.status_id;
     const user_assigned = req.body.user_assigned;
+    const phaseId = req.body.phase_id;
 
 
     if (!name || !description || !projectId ) res.status(400).send({ message: "Please, send all params value" });
@@ -20,7 +21,8 @@ exports.create = async (req, res) => {
         description: description,
         projects_id: projectId,
         user_assigned:user_assigned,
-        status_id:statusId
+        status_id:statusId,
+        phases_id:phaseId
     }
 
     await PROJECTASK.create(projectType)
@@ -82,6 +84,7 @@ exports.update = async (req, res) => {
     const description = req.body.description;
     const status_id= req.body.status_id;
     const user_assigned = req.body.user_assigned;
+    const phase_id= req.body.phase_id;
 
     if (!id) res.send(400).send({ message: 'Id can not be null' });
 
@@ -90,6 +93,7 @@ exports.update = async (req, res) => {
         description: description,
         status_id: status_id,
         user_assigned:user_assigned,
+        phases_id:phase_id,
         finishDate: new Date()
     }
 

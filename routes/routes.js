@@ -13,6 +13,7 @@ const Project = require('../app/controllers/Project.Controller');
 const User = require('../app/controllers/UserController');
 const GroupRole = require('../app/controllers/GroupRole..controller');
 const ProjectUser = require('../app/controllers/ProjectUser.controller');
+const Phase = require('../app/controllers/Phase.controller');
 
 /***
  * @swagger
@@ -652,6 +653,13 @@ router.post('/api/projectUser',ProjectUser.create);
 router.get('/api/projectUser',ProjectUser.findAll);
 router.get('/api/projectUser/:id',ProjectUser.findById);
 router.put('/api/projectUser',ProjectUser.update);
+
+router.post('/api/phase',Phase.create);
+router.get('/api/phase',Phase.findAll);
+router.get('/api/phase/:id',Phase.findById);
+router.put('/api/phase',Phase.update);
+
+
 
 
 

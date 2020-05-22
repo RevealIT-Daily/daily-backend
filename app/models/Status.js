@@ -6,7 +6,8 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true,
             type: Sequelize.BIGINT
         },
-        description: { type: Sequelize.STRING }
+        description: { type: Sequelize.STRING },
+        status:{ type: Sequelize.BIGINT}
     }, {
         freezeTableName: true, // Model tableName will be the same as the model name,
         timestamps: false
