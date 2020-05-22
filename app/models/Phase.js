@@ -1,9 +1,8 @@
-const Status = require('./Status')
 
 module.exports = (sequelize,Sequelize) => {
     var phases = sequelize.define('phases',{
         id:{
-            primeryKey:true,
+            primaryKey:true,
             autoIncrement:true,
             type:Sequelize.BIGINT
         },
@@ -17,20 +16,13 @@ module.exports = (sequelize,Sequelize) => {
         },
         status_id:{
             type:Sequelize.BIGINT,
-            references:{
-            model: Status,
-            key: 'id'
-            }
+            allowNull:false
         }
     },{
         freezeTable: true,
         timestamps: false,
         tableName: 'phases'
     });
-
-    phases.associate = function (models){
-        models.phases.hasOne(models.status, { foreignKey: 'status_id'});
-    }
 
     return phases;
 }

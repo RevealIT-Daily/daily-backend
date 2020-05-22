@@ -28,6 +28,7 @@ db.AccountType = require('../app/models/AccountType')(db.sequelize,db.Sequelize)
 db.DefaultRole = require('../app/models/DefaultRole')(db.sequelize,db.Sequelize);
 db.GroupRoles = require('../app/models/GroupRole')(db.sequelize,db.Sequelize);
 db.ProjectUser = require('../app/models/ProjectUsers')(db.sequelize,db.Sequelize);
+db.Phase = require('../app/models/Phase')(db.sequelize,db.Sequelize);
 
 
 
@@ -35,6 +36,7 @@ db.ProjectUser = require('../app/models/ProjectUsers')(db.sequelize,db.Sequelize
 db.Project.belongsTo(db.Status,{foreignKey: 'status_id'});
 db.ProjectTasks.belongsTo(db.Project, {foreignKey: 'projects_id'}); // Adds fk_company to User
 db.ProjectTasks.belongsTo(db.Status,{foreignKey: 'status_id'});
+db.ProjectTasks.belongsTo(db.Phase,{foreignKey: 'phase_id'});
 db.User.belongsTo(db.AccountType, {foreignKey:'account_types'});
 db.User.belongsTo(db.DefaultRole, {foreignKey: 'default_roles'});
 db.User.belongsTo(db.Status,{foreignKey: 'status_id'});
@@ -44,6 +46,7 @@ db.GroupRoles.belongsTo(db.Status,{foreignKey: 'status_id'});
 db.ProjectUser.belongsTo(db.User,{foreignKey: 'user_id'});
 db.ProjectUser.belongsTo(db.Project,{foreignKey: 'projects_id'});
 db.ProjectUser.belongsTo(db.GroupRoles,{foreignKey: 'group_roles_id'});
+db.Phase.belongsTo(db.Status, {foreignKey: 'status_id'});
 
 
 module.exports = db;

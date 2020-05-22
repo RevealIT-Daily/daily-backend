@@ -9,14 +9,15 @@ const STATUS = dbConnection.Status;
 
 exports.create = async (req, res) => {
 
-    if (!req.body.description) {
+    if (!req.body.description || !req.body.status) {
         res.status(400).send({
             message: "Description can not be null"
         });
     }
 
     const status = {
-        description: req.body.description
+        description: req.body.description,
+        status: req.body.status
     };
 
     await STATUS.create(status)

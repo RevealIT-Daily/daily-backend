@@ -33,19 +33,12 @@ module.exports = (sequelize, Sequelize)=>{
         },
         status_id:{
             type: Sequelize.BIGINT,
-            model: Status,
-            key:'id'
         },
-        // phase_id:{
-        //     type: Sequelize.BIGINT,
-        //     model: Phase,
-        //     key: 'id'
-        // },
-        user_assigned:{
+        phases_id:{
             type: Sequelize.BIGINT,
-            defaultValue: Sequelize.literal(1),
-            model: User,
-            key: 'id'
+        },
+        user_assigned:{
+            type: Sequelize.BIGINT
         }
     },{
         freezeTable: true,
