@@ -1,7 +1,3 @@
-const Status = require('./Status')
-const Project = require('./Project')
-const User = require('./User')
-const Phase = require('./Phase')
 
 module.exports = (sequelize, Sequelize)=>{
     var project_tasks = sequelize.define("project_tasks",{

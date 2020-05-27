@@ -4,6 +4,7 @@ const dbConnection = require('../../database/database.connection');
 
 const PROJECT = dbConnection.Project;
 const STATUS = dbConnection.Status;
+const PROJECTUSER = dbConnection.ProjectUser;
 
 exports.create = async (req, res) => {
     const name = req.body.name;
@@ -21,15 +22,34 @@ exports.create = async (req, res) => {
         status_id:statusId
     }
 
+    var ProjectUser;
+    var isProjectRegister=false;
+    
+
     await PROJECT.create(Project)
         .then(data => {
-            res.status(201).send({ message: "Project created!", data: data });
+            ProjectUser = {
+                user_id:2,
+                projects_id:data.id,
+                group_roles_id:1
+            }
+            isProjectRegister=true;
         })
         .catch(err => {
             res.status(400).send({
                 message: err.message || "Something wrong from create PROJECT"
             });
         });
+        
+        if(isProjectRegister){
+            await PROJECTUSER.create(ProjectUser).then(data => {
+                res.status(201).send({ message: "Project created!", data: data });
+            }).catch(err => {
+                res.status(400).send({
+                    message: err.message || "Something wrong from create PROJECT"
+                });
+            });
+        }
 }
 
 exports.findAll = async (req,res)=>{
@@ -61,6 +81,8 @@ exports.findById = async (req, res) => {
             });
         });
 }
+
+
 
 exports.update = async (req, res) => {
 

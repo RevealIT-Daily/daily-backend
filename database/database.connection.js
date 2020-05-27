@@ -36,7 +36,7 @@ db.Phase = require('../app/models/Phase')(db.sequelize,db.Sequelize);
 db.Project.belongsTo(db.Status,{foreignKey: 'status_id'});
 db.ProjectTasks.belongsTo(db.Project, {foreignKey: 'projects_id'}); // Adds fk_company to User
 db.ProjectTasks.belongsTo(db.Status,{foreignKey: 'status_id'});
-db.ProjectTasks.belongsTo(db.Phase,{foreignKey: 'phase_id'});
+db.ProjectTasks.belongsTo(db.Phase,{foreignKey: 'phases_id'});
 db.User.belongsTo(db.AccountType, {foreignKey:'account_types'});
 db.User.belongsTo(db.DefaultRole, {foreignKey: 'default_roles'});
 db.User.belongsTo(db.Status,{foreignKey: 'status_id'});

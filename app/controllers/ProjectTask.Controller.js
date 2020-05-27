@@ -132,4 +132,26 @@ exports.getTasksByProject = async (req,res) => {
         })
     })
 }
+exports.findByPhaseId = async (req, res)=>{
+    if(!req.params.id) return res.status(400).send({message: 'Phase not found!'});
+
+    await PROJECTASK.findAll({
+        include:[{
+            model:PROJECT
+        },{
+            model: STATUS
+        }
+        ],
+        where:{
+            phases_id:req.params.id
+        }
+    }).then(data => {
+        if(!data) return res.status(400).send({message : 'project task not found!'})
+        res.status(200).send({data: data})
+    }).catch(err =>{
+        res.status(400).send({
+            message: err.message || "Something Wrong from update project task"
+        })
+    })
+}
 

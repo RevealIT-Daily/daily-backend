@@ -430,6 +430,7 @@ router.put('/api/projectTask',ProjectTask.update);
  *              description: Returns project task object
  */
 router.get('/api/projectTaskByProject/:idProject',ProjectTask.getTasksByProject)
+router.get('/api/projectByPhasesId/:id', ProjectTask.findByPhaseId)
 
 
 /// PROJECT ///
@@ -535,6 +536,8 @@ router.get('/api/project/:id',Project.findById)
  *              description: Returns the message 'Project  updated!'
  */
 router.put('/api/project', Project.update);
+
+
 
 // user //
 
